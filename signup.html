@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en" class="ud-dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up | Crypto Tailwind</title>
+
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
+
+    <!-- ===== CSS Files ===== -->
+    <link rel="stylesheet" href="css/glightbox.min.css" />
+    <link rel="stylesheet" href="css/animate.css" />
+    <link rel="stylesheet" href="css/tailwind.css" />
+    <script src="js/wow.min.js"></script>
+    <script>
+      // ===== wow js
+      new WOW().init();
+    </script>
+
+    <!-- ===== Alpine JS ===== -->
+    <script defer src="./js/alpine.min.js"></script>
+  </head>
+  <body
+    x-data="
+      {
+        scrolledFromTop: false
+      }
+    "
+    x-init="window.pageYOffset >= 50 ? scrolledFromTop = true : scrolledFromTop = false"
+    @scroll.window="window.pageYOffset >= 50 ? scrolledFromTop = true : scrolledFromTop = false"
+    class="ud-bg-white dark:ud-bg-black"
+  >
+    <!-- ===== Header start ===== -->
+    <header
+      x-data="
+        {
+          navbarOpen: false,
+          dropdownOpen: false
+        }
+      "
+      :class="scrolledFromTop ? 'ud-bg-white dark:ud-bg-dark ud-bg-opacity-80 dark:ud-bg-opacity-80 ud-shadow-sticky ud-backdrop-blur-sm ' : ' ud-bg-transparent dark:ud-bg-transparent' "
+      class="ud-top-0 ud-z-50 ud-flex ud-w-full ud-items-center ud-fixed"
+    >
+      <div class="ud-container">
+        <div
+          class="ud-relative ud--mx-4 ud-flex ud-items-center ud-justify-between"
+        >
+          <div class="ud-w-60 ud-max-w-full ud-px-4">
+            <a
+              href="index.html"
+              :class="scrolledFromTop && '!ud-py-4 lg:!ud-py-2' "
+              class="ud-block ud-w-full"
+            >
+              <img
+                src="images/logo/logo.svg"
+                alt="logo"
+                class="ud-w-full dark:ud-hidden"
+              />
+              <img
+                src="images/logo/logo-white.svg"
+                alt="logo"
+                class="ud-hidden ud-w-full dark:ud-block"
+              />
+            </a>
+          </div>
+          <div class="ud-flex ud-w-full ud-items-center ud-justify-end ud-px-4">
+            <div>
+              <button
+                @click="navbarOpen = !navbarOpen"
+                :class="navbarOpen && 'navbarTogglerActive' "
+                id="navbarToggler"
+                class="ud-absolute ud-right-4 ud-top-1/2 ud-block ud--translate-y-1/2 ud-rounded-lg ud-px-3 ud-py-[6px] ud-ring-primary focus:ud-ring-2 lg:ud-hidden"
+              >
+                <span
+                  :class="navbarOpen && 'ud-rotate-45 ud-top-[7px]' "
+                  class="ud-relative ud-my-[6px] ud-block ud-h-[2px] ud-w-[30px] ud-bg-black dark:ud-bg-white"
+                ></span>
+                <span
+                  :class="navbarOpen && 'ud-opacity-0' "
+                  class="ud-relative ud-my-[6px] ud-block ud-h-[2px] ud-w-[30px] ud-bg-black dark:ud-bg-white"
+                ></span>
+                <span
+                  :class="navbarOpen && 'ud-top-[-8px] ud-rotate-[135deg]' "
+                  class="ud-relative ud-my-[6px] ud-block ud-h-[2px] ud-w-[30px] ud-bg-black dark:ud-bg-white"
+                ></span>
+              </button>
+              <nav
+                :class="!navbarOpen && 'ud-hidden' "
+                id="navbarCollapse"
+                class="ud-absolute ud-right-4 ud-top-full ud-w-full ud-max-w-[250px] ud-rounded-lg ud-bg-white ud-py-4 ud-px-6 ud-shadow dark:ud-bg-black lg:ud-static lg:ud-block lg:ud-w-full lg:ud-max-w-full lg:ud-bg-transparent lg:ud-py-0 lg:ud-shadow-none dark:lg:ud-bg-transparent"
+              >
+                <ul class="ud-blcok lg:ud-flex">
+                  <li>
+                    <a
+                      href="/#home"
+                      class="scroll-menu ud-flex ud-py-2 ud-text-lg ud-font-semibold ud-text-body-color-2 hover:ud-text-primary dark:ud-text-body-color dark:hover:ud-text-white lg:ud-ml-7 lg:ud-inline-flex lg:ud-py-5 xl:ud-ml-10 2xl:ud-ml-12"
+                    >
+                      Home
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="/#features"
+                      class="scroll-menu ud-flex ud-py-2 ud-text-lg ud-font-semibold ud-text-body-color-2 hover:ud-text-primary dark:ud-text-body-color dark:hover:ud-text-white lg:ud-ml-7 lg:ud-inline-flex lg:ud-py-5 xl:ud-ml-10 2xl:ud-ml-12"
+                    >
+                      Features
+                    </a>
+                  </li>
+
+                  <li>
+                    <a
+                      href="/#roadmap"
+                      class="scroll-menu ud-flex ud-py-2 ud-text-lg ud-font-semibold ud-text-body-color-2 hover:ud-text-primary dark:ud-text-body-color dark:hover:ud-text-white lg:ud-ml-7 lg:ud-inline-flex lg:ud-py-5 xl:ud-ml-10 2xl:ud-ml-12"
+                    >
+                      Roadmap
+                    </a>
+                  </li>
+
+                  <li class="ud-group submenu-item ud-relative">
+                    <a
+                      href="javascript:void(0)"
+                      @click="dropdownOpen = !dropdownOpen"
+                      class="ud-relative ud-flex ud-py-2 ud-text-lg ud-font-semibold ud-text-body-color-2 after:ud-absolute after:ud-right-1 after:ud-top-1/2 after:ud-mt-[-2px] after:ud-h-2 after:ud-w-2 after:ud-translate-y-[-50%] after:ud-rotate-45 after:ud-border-b-2 after:ud-border-r-2 after:ud-border-current group-hover:ud-text-primary dark:ud-text-body-color dark:group-hover:ud-text-white lg:ud-ml-7 lg:ud-inline-flex lg:ud-py-5 lg:ud-pl-0 lg:ud-pr-4 lg:after:ud-right-0 xl:ud-ml-10 2xl:ud-ml-12"
+                    >
+                      Pages
+                    </a>
+                    <div
+                      :class="dropdownOpen ? 'ud-block' : 'ud-hidden lg:ud-block ' "
+                      class="submenu ud-relative ud-top-full ud-left-0 ud-rounded-lg ud-bg-white ud-transition-[top] ud-duration-300 group-hover:ud-opacity-100 dark:ud-bg-black lg:ud-invisible lg:ud-absolute lg:ud-top-[115%] lg:ud-w-[250px] lg:ud-p-4 lg:ud-opacity-0 lg:ud-shadow-lg lg:group-hover:ud-visible lg:group-hover:ud-top-full"
+                    >
+                      <a
+                        href="blog-grid.html"
+                        class="ud-block ud-rounded ud-py-[10px] ud-text-sm ud-text-black hover:ud-text-primary dark:ud-text-white dark:hover:ud-text-primary lg:ud-px-4"
+                      >
+                        Blog Grid Page
+                      </a>
+
+                      <a
+                        href="blog-details.html"
+                        class="ud-block ud-rounded ud-py-[10px] ud-text-sm ud-text-black hover:ud-text-primary dark:ud-text-white dark:hover:ud-text-primary lg:ud-px-4"
+                      >
+                        Blog Details Page
+                      </a>
+
+                      <a
+                        href="token-sale.html"
+                        class="ud-block ud-rounded ud-py-[10px] ud-text-sm ud-text-black hover:ud-text-primary dark:ud-text-white dark:hover:ud-text-primary lg:ud-px-4"
+                      >
+                        Token Sale Page
+                      </a>
+
+                      <a
+                        href="support.html"
+                        class="ud-block ud-rounded ud-py-[10px] ud-text-sm ud-text-black hover:ud-text-primary dark:ud-text-white dark:hover:ud-text-primary lg:ud-px-4"
+                      >
+                        Support Page
+                      </a>
+
+                      <a
+                        href="signin.html"
+                        class="ud-block ud-rounded ud-py-[10px] ud-text-sm ud-text-black hover:ud-text-primary dark:ud-text-white dark:hover:ud-text-primary lg:ud-px-4"
+                      >
+                        Signin Page
+                      </a>
+
+                      <a
+                        href="signup.html"
+                        class="ud-block ud-rounded ud-py-[10px] ud-text-sm ud-text-black hover:ud-text-primary dark:ud-text-white dark:hover:ud-text-primary lg:ud-px-4"
+                      >
+                        Signup Page
+                      </a>
+                    </div>
+                  </li>
+                  <li>
+                    <a
+                      href="/#contact"
+                      class="scroll-menu ud-flex ud-py-2 ud-text-lg ud-font-semibold ud-text-body-color-2 hover:ud-text-primary dark:ud-text-body-color dark:hover:ud-text-white lg:ud-ml-7 lg:ud-inline-flex lg:ud-py-5 xl:ud-ml-10 2xl:ud-ml-12"
+                    >
+                      Support
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+            <div
+              class="ud-flex ud-justify-end ud-pr-16 lg:ud-pr-0 xl:ud-pl-12 2xl:ud-pl-20"
+            >
+              <div class="ud-mr-4">
+                <label
+                  for="darkToggler"
+                  class="ud-flex ud-h-11 ud-w-20 ud-cursor-pointer ud-items-center ud-justify-center ud-rounded-full ud-bg-light-bg dark:ud-bg-[#1E2763]"
+                >
+                  <input
+                    type="checkbox"
+                    name="darkToggler"
+                    id="darkToggler"
+                    class="ud-sr-only"
+                    aria-label="darkToggler"
+                  />
+                  <span
+                    class="ud-flex ud-h-8 ud-w-8 ud-items-center ud-justify-center ud-rounded-full ud-bg-primary ud-text-white dark:ud-bg-transparent dark:ud-text-body-color"
+                  >
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      class="ud-fill-current"
+                    >
+                      <path
+                        d="M4.50663 3.2267L3.30663 2.03337L2.36663 2.97337L3.55996 4.1667L4.50663 3.2267ZM2.66663 7.00003H0.666626V8.33337H2.66663V7.00003ZM8.66663 0.366699H7.33329V2.33337H8.66663V0.366699ZM13.6333 2.97337L12.6933 2.03337L11.5 3.2267L12.44 4.1667L13.6333 2.97337ZM11.4933 12.1067L12.6866 13.3067L13.6266 12.3667L12.4266 11.1734L11.4933 12.1067ZM13.3333 7.00003V8.33337H15.3333V7.00003H13.3333ZM7.99996 3.6667C5.79329 3.6667 3.99996 5.46003 3.99996 7.6667C3.99996 9.87337 5.79329 11.6667 7.99996 11.6667C10.2066 11.6667 12 9.87337 12 7.6667C12 5.46003 10.2066 3.6667 7.99996 3.6667ZM7.33329 14.9667H8.66663V13H7.33329V14.9667ZM2.36663 12.36L3.30663 13.3L4.49996 12.1L3.55996 11.16L2.36663 12.36Z"
+                      />
+                    </svg>
+                  </span>
+                  <span
+                    class="ud-flex ud-h-8 ud-w-8 ud-items-center ud-justify-center ud-rounded-full ud-bg-transparent ud-text-body-color-2 dark:ud-bg-primary dark:ud-text-white"
+                  >
+                    <svg
+                      width="13"
+                      height="15"
+                      viewBox="0 0 13 15"
+                      class="ud-fill-current"
+                    >
+                      <path
+                        d="M10.6111 12.855C11.591 12.1394 12.3151 11.1979 12.7723 10.1623C10.4824 10.4065 8.1342 9.46314 6.67948 7.47109C5.22476 5.47905 5.04093 2.95516 5.97054 0.848179C4.84491 0.968503 3.72768 1.37162 2.74781 2.08719C-0.224105 4.25747 -0.874706 8.43084 1.29558 11.4028C3.46586 14.3747 7.63923 15.0253 10.6111 12.855Z"
+                      />
+                    </svg>
+                  </span>
+                </label>
+              </div>
+              <div class="ud-hidden sm:ud-flex">
+                <a
+                  href="signin.html"
+                  class="ud-flex ud-items-center ud-justify-center ud-rounded-full ud-border ud-border-body-color-2 ud-py-[9px] ud-px-8 ud-text-base ud-font-semibold ud-text-body-color-2 ud-transition-all hover:ud-border-primary hover:ud-bg-primary hover:ud-text-white dark:ud-border-white dark:ud-text-white dark:hover:ud-bg-white dark:hover:ud-text-primary lg:px-4 2xl:px-8"
+                >
+                  Sign In
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- ===== Header end ===== -->
+
+    <!-- ===== Signup start ===== -->
+    <section class="ud-relative ud-z-10 ud-pt-[180px] ud-pb-[120px]">
+      <div class="ud-container">
+        <div class="ud-mx-[-16px] ud-flex ud-flex-wrap">
+          <div class="ud-w-full ud-px-4">
+            <div
+              class="wow fadeInUp ud-mx-auto ud-max-w-[500px] ud-rounded-md ud-border ud-border-[#f5f5f5] ud-bg-white ud-p-12 dark:ud-border-0 dark:ud-bg-dark sm:ud-p-[60px]"
+              data-wow-delay="0s"
+            >
+              <h3
+                class="ud-mb-3 ud-text-center ud-text-2xl ud-font-bold ud-text-black dark:ud-text-white sm:ud-text-3xl"
+              >
+                Create your account
+              </h3>
+              <p
+                class="ud-mb-11 ud-text-center ud-text-base ud-font-medium ud-text-body-color-2 dark:ud-text-body-color"
+              >
+                It's totally free and super easy
+              </p>
+              <button
+                class="ud-shadow-one dark:ud-shadow-signUp ud-mb-6 ud-flex ud-w-full ud-items-center ud-justify-center ud-rounded-full ud-border ud-border-body-color ud-border-opacity-50 ud-bg-white ud-p-3 ud-text-base ud-font-medium ud-text-body-color-2 hover:ud-text-primary dark:ud-border-opacity-30 dark:ud-bg-[#1F2656] dark:ud-text-body-color dark:hover:ud-text-white"
+              >
+                <span class="ud-mr-3">
+                  <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <g clip-path="url(#clip0_95:967)">
+                      <path
+                        d="M20.0001 10.2216C20.0122 9.53416 19.9397 8.84776 19.7844 8.17725H10.2042V11.8883H15.8277C15.7211 12.539 15.4814 13.1618 15.1229 13.7194C14.7644 14.2769 14.2946 14.7577 13.7416 15.1327L13.722 15.257L16.7512 17.5567L16.961 17.5772C18.8883 15.8328 19.9997 13.266 19.9997 10.2216"
+                        fill="#4285F4"
+                      />
+                      <path
+                        d="M10.2042 20.0001C12.9592 20.0001 15.2721 19.1111 16.9616 17.5778L13.7416 15.1332C12.88 15.7223 11.7235 16.1334 10.2042 16.1334C8.91385 16.126 7.65863 15.7206 6.61663 14.9747C5.57464 14.2287 4.79879 13.1802 4.39915 11.9778L4.27957 11.9878L1.12973 14.3766L1.08856 14.4888C1.93689 16.1457 3.23879 17.5387 4.84869 18.512C6.45859 19.4852 8.31301 20.0005 10.2046 20.0001"
+                        fill="#34A853"
+                      />
+                      <path
+                        d="M4.39911 11.9777C4.17592 11.3411 4.06075 10.673 4.05819 9.99996C4.0623 9.32799 4.17322 8.66075 4.38696 8.02225L4.38127 7.88968L1.19282 5.4624L1.08852 5.51101C0.372885 6.90343 0.00012207 8.4408 0.00012207 9.99987C0.00012207 11.5589 0.372885 13.0963 1.08852 14.4887L4.39911 11.9777Z"
+                        fill="#FBBC05"
+                      />
+                      <path
+                        d="M10.2042 3.86663C11.6663 3.84438 13.0804 4.37803 14.1498 5.35558L17.0296 2.59996C15.1826 0.901848 12.7366 -0.0298855 10.2042 -3.6784e-05C8.3126 -0.000477834 6.45819 0.514732 4.8483 1.48798C3.2384 2.46124 1.93649 3.85416 1.08813 5.51101L4.38775 8.02225C4.79132 6.82005 5.56974 5.77231 6.61327 5.02675C7.6568 4.28118 8.91279 3.87541 10.2042 3.86663Z"
+                        fill="#EB4335"
+                      />
+                    </g>
+                    <defs>
+                      <clipPath id="clip0_95:967">
+                        <rect width="20" height="20" fill="white" />
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </span>
+                Sign up with Google
+              </button>
+              <div class="ud-mb-8 ud-flex ud-items-center ud-justify-center">
+                <span
+                  class="ud-hidden ud-h-[1px] ud-w-full ud-max-w-[60px] ud-bg-body-color ud-bg-opacity-50 sm:ud-block"
+                ></span>
+                <p
+                  class="ud-w-full ud-px-5 ud-text-center ud-text-base ud-font-medium ud-text-body-color-2 dark:ud-text-body-color"
+                >
+                  Or, register with your email
+                </p>
+                <span
+                  class="ud-hidden ud-h-[1px] ud-w-full ud-max-w-[60px] ud-bg-body-color ud-bg-opacity-50 sm:ud-block"
+                ></span>
+              </div>
+              <form>
+                <div class="ud-mb-8">
+                  <label
+                    for="name"
+                    class="ud-mb-3 ud-block ud-text-sm ud-font-medium ud-text-dark dark:ud-text-white"
+                  >
+                    Full Name
+                  </label>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Enter your full name"
+                    class="ud-shadow-one dark:ud-shadow-signUp ud-w-full ud-rounded-full ud-border ud-border-body-color ud-border-opacity-50 ud-py-3 ud-px-6 ud-text-base ud-text-body-color ud-placeholder-body-color ud-outline-none focus:ud-border-primary focus-visible:ud-shadow-none dark:ud-border-opacity-30 dark:ud-bg-[#1F2656]"
+                  />
+                </div>
+                <div class="ud-mb-8">
+                  <label
+                    for="email"
+                    class="ud-mb-3 ud-block ud-text-sm ud-font-medium ud-text-dark dark:ud-text-white"
+                  >
+                    Work Email
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter your Email"
+                    class="ud-shadow-one dark:ud-shadow-signUp ud-w-full ud-rounded-full ud-border ud-border-body-color ud-border-opacity-50 ud-py-3 ud-px-6 ud-text-base ud-text-body-color ud-placeholder-body-color ud-outline-none focus:ud-border-primary focus-visible:ud-shadow-none dark:ud-border-opacity-30 dark:ud-bg-[#1F2656]"
+                  />
+                </div>
+                <div class="ud-mb-8">
+                  <label
+                    for="password"
+                    class="ud-mb-3 ud-block ud-text-sm ud-font-medium ud-text-dark dark:ud-text-white"
+                  >
+                    Your Password
+                  </label>
+                  <input
+                    type="password"
+                    name="password"
+                    placeholder="Enter your Password"
+                    class="ud-shadow-one dark:ud-shadow-signUp ud-w-full ud-rounded-full ud-border ud-border-body-color ud-border-opacity-50 ud-py-3 ud-px-6 ud-text-base ud-text-body-color ud-placeholder-body-color ud-outline-none focus:ud-border-primary focus-visible:ud-shadow-none dark:ud-border-opacity-30 dark:ud-bg-[#1F2656]"
+                  />
+                </div>
+                <div class="ud-mb-8 ud-flex">
+                  <label
+                    for="checkboxLabel"
+                    class="ud-flex ud-cursor-pointer ud-select-none ud-text-sm ud-font-medium ud-text-body-color-2 dark:ud-text-body-color"
+                  >
+                    <div class="ud-relative">
+                      <input
+                        type="checkbox"
+                        id="checkboxLabel"
+                        class="ud-sr-only"
+                      />
+                      <div
+                        class="box ud-mr-4 ud-mt-1 ud-flex ud-h-5 ud-w-5 ud-items-center ud-justify-center ud-rounded ud-border ud-border-body-color ud-border-opacity-30 dark:ud-border-white dark:ud-border-opacity-10"
+                      >
+                        <span class="ud-opacity-0">
+                          <svg
+                            width="11"
+                            height="8"
+                            viewBox="0 0 11 8"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M10.0915 0.951972L10.0867 0.946075L10.0813 0.940568C9.90076 0.753564 9.61034 0.753146 9.42927 0.939309L4.16201 6.22962L1.58507 3.63469C1.40401 3.44841 1.11351 3.44879 0.932892 3.63584C0.755703 3.81933 0.755703 4.10875 0.932892 4.29224L0.932878 4.29225L0.934851 4.29424L3.58046 6.95832C3.73676 7.11955 3.94983 7.2 4.1473 7.2C4.36196 7.2 4.55963 7.11773 4.71406 6.9584L10.0468 1.60234C10.2436 1.4199 10.2421 1.1339 10.0915 0.951972ZM4.2327 6.30081L4.2317 6.2998C4.23206 6.30015 4.23237 6.30049 4.23269 6.30082L4.2327 6.30081Z"
+                              fill="#3056D3"
+                              stroke="#3056D3"
+                              stroke-width="0.4"
+                            />
+                          </svg>
+                        </span>
+                      </div>
+                    </div>
+                    <span>
+                      By creating account means you agree to the
+                      <a
+                        href="javascript:void(0)"
+                        class="ud-text-primary hover:ud-underline"
+                      >
+                        Terms and Conditions
+                      </a>
+                      , and our
+                      <a
+                        href="javascript:void(0)"
+                        class="ud-text-primary hover:ud-underline"
+                      >
+                        Privacy Policy
+                      </a>
+                    </span>
+                  </label>
+                </div>
+                <div class="ud-mb-6">
+                  <button
+                    class="hover:ud-shadow-signUp ud-flex ud-w-full ud-items-center ud-justify-center ud-rounded-full ud-bg-primary ud-py-4 ud-px-9 ud-text-base ud-font-medium ud-text-white ud-transition ud-duration-300 ud-ease-in-out hover:ud-bg-opacity-80"
+                  >
+                    Sign up
+                  </button>
+                </div>
+              </form>
+              <p
+                class="ud-text-center ud-text-base ud-font-medium ud-text-body-color-2 dark:ud-text-body-color"
+              >
+                Already using Startup?
+                <a
+                  href="signin.html"
+                  class="ud-text-primary hover:ud-underline"
+                >
+                  Sign in
+                </a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="ud-absolute ud-top-0 ud-left-0 ud--z-10 ud-h-full ud-w-full ud-opacity-20"
+        style="
+          background-image: linear-gradient(
+            180deg,
+            #3e7dff 0%,
+            rgba(62, 125, 255, 0) 100%
+          );
+        "
+      ></div>
+      <img
+        src="images/shapes/hero-shape-1.svg"
+        alt=""
+        class="ud-absolute ud-left-0 ud-top-0 ud--z-10"
+      />
+      <img
+        src="images/shapes/hero-shape-2.svg"
+        alt=""
+        class="ud-absolute ud-right-0 ud-top-0 ud--z-10"
+      />
+    </section>
+    <!-- ===== Signup end ===== -->
+
+    <!-- ===== Footer start ===== -->
+    <footer class="ud-relative ud-z-10">
+      <div class="ud-container">
+        <div class="ud--mx-4 ud-flex ud-flex-wrap">
+          <div class="ud-w-full ud-px-4 md:ud-w-1/2 lg:ud-w-4/12 xl:ud-w-4/12">
+            <div
+              class="wow fadeInUp ud-mb-14 ud-max-w-[330px] xl:ud-mb-20"
+              data-wow-delay="0s"
+            >
+              <a href="index.html" class="ud-mb-6 ud-inline-block">
+                <img
+                  src="images/logo/logo-white.svg"
+                  alt="logo"
+                  class="ud-hidden dark:ud-block"
+                />
+                <img
+                  src="images/logo/logo.svg"
+                  alt="logo"
+                  class="dark:ud-hidden"
+                />
+              </a>
+              <p
+                class="ud-mb-10 ud-text-base ud-font-medium ud-text-body-color-2 dark:ud-text-body-color"
+              >
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam
+                vitae quam nec ante fringilla vel at erat convallis elit.
+              </p>
+              <div class="ud-flex ud-items-center ud-space-x-3">
+                <a
+                  href="javascript:void(0)"
+                  class="ud-flex ud-h-10 ud-w-10 ud-items-center ud-justify-center ud-rounded-full ud-bg-light-bg ud-text-body-color-2 hover:ud-bg-primary hover:ud-text-white dark:ud-bg-dark dark:ud-text-white dark:hover:ud-bg-primary"
+                  name="social-link"
+                  aria-label="social-link"
+                >
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8.25 8.46875C7.6875 8.46875 7.28125 8.96875 7.28125 9.53125C7.28125 10.0938 7.71875 10.5938 8.25 10.5938C8.8125 10.5938 9.21875 10.125 9.21875 9.53125C9.25 8.9375 8.8125 8.46875 8.25 8.46875Z"
+                      fill="currentColor"
+                    />
+                    <path
+                      d="M11.75 10.5625C12.285 10.5625 12.7187 10.0868 12.7187 9.5C12.7187 8.9132 12.285 8.4375 11.75 8.4375C11.215 8.4375 10.7812 8.9132 10.7812 9.5C10.7812 10.0868 11.215 10.5625 11.75 10.5625Z"
+                      fill="currentColor"
+                    />
+                    <path
+                      d="M16.4687 0.3125H3.53125C2.4375 0.3125 1.53125 1.1875 1.53125 2.28125V15.375C1.53125 16.4688 2.40625 17.3438 3.5 17.3438H14.4687L13.9375 15.5938L15.1562 16.75L16.3437 17.8437L18.4062 19.6875V2.28125C18.5 1.1875 17.5625 0.3125 16.4687 0.3125ZM12.7187 12.9375C12.7187 12.9375 12.375 12.5313 12.0625 12.1563C13.3437 11.8125 13.8125 11 13.8125 11C13.4062 11.25 13.0312 11.4375 12.7187 11.5625C12.25 11.7812 11.75 11.9062 11.3125 11.9687C10.375 12.1562 9.5625 12.0937 8.8125 11.9687C8.25 11.875 7.8125 11.7188 7.40625 11.5625C7.1875 11.4687 6.90625 11.375 6.6875 11.25C6.65625 11.25 6.65625 11.2188 6.59375 11.2188C6.59375 11.2188 6.5625 11.2187 6.5625 11.1875C6.375 11.0937 6.3125 11 6.3125 11C6.3125 11 6.8125 11.7813 8.03125 12.1563C7.71875 12.5 7.375 12.9375 7.375 12.9375C5.21875 12.8438 4.4375 11.5 4.4375 11.5C4.4375 8.375 5.84375 5.875 5.84375 5.875C7.25 4.8125 8.5625 4.875 8.5625 4.875L8.65625 5C6.875 5.46875 6.09375 6.25 6.09375 6.25C6.09375 6.25 6.3125 6.125 6.65625 6C7.71875 5.5625 8.5 5.4375 8.84375 5.375C8.875 5.375 8.9375 5.375 9.03125 5.375C9.59375 5.28125 10.3125 5.28125 10.9687 5.375C11.9062 5.46875 12.875 5.78125 13.875 6.3125C13.875 6.3125 13.125 5.59375 11.4375 5.09375L11.5625 4.90625C11.5625 4.90625 12.875 4.875 14.2812 5.90625C14.2812 5.90625 15.6875 8.40625 15.6875 11.5313C15.7187 11.5 14.875 12.9063 12.7187 12.9375Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </a>
+                <a
+                  href="javascript:void(0)"
+                  class="ud-flex ud-h-10 ud-w-10 ud-items-center ud-justify-center ud-rounded-full ud-bg-light-bg ud-text-body-color-2 hover:ud-bg-primary hover:ud-text-white dark:ud-bg-dark dark:ud-text-white dark:hover:ud-bg-primary"
+                  name="social-link"
+                  aria-label="social-link"
+                >
+                  <svg
+                    width="18"
+                    height="15"
+                    viewBox="0 0 18 15"
+                    class="ud-fill-current"
+                  >
+                    <path
+                      d="M17.7165 2.00016C17.0749 2.29183 16.3832 2.4835 15.6665 2.57516C16.3999 2.1335 16.9665 1.4335 17.2332 0.591829C16.5415 1.0085 15.7749 1.30016 14.9665 1.46683C14.3082 0.750163 13.3832 0.333496 12.3332 0.333496C10.3749 0.333496 8.77487 1.9335 8.77487 3.9085C8.77487 4.19183 8.8082 4.46683 8.86654 4.72516C5.89987 4.57516 3.2582 3.15016 1.49987 0.991829C1.19154 1.51683 1.01654 2.1335 1.01654 2.7835C1.01654 4.02516 1.64154 5.12516 2.6082 5.75016C2.01654 5.75016 1.46654 5.5835 0.983203 5.3335C0.983203 5.3335 0.983203 5.3335 0.983203 5.3585C0.983203 7.09183 2.21654 8.54183 3.84987 8.86683C3.54987 8.95016 3.2332 8.99183 2.9082 8.99183C2.6832 8.99183 2.4582 8.96683 2.24154 8.92516C2.69154 10.3335 3.99987 11.3835 5.57487 11.4085C4.3582 12.3752 2.81654 12.9418 1.1332 12.9418C0.84987 12.9418 0.566536 12.9252 0.283203 12.8918C1.86654 13.9085 3.74987 14.5002 5.76654 14.5002C12.3332 14.5002 15.9415 9.05016 15.9415 4.32516C15.9415 4.16683 15.9415 4.01683 15.9332 3.8585C16.6332 3.3585 17.2332 2.72516 17.7165 2.00016Z"
+                    />
+                  </svg>
+                </a>
+                <a
+                  href="javascript:void(0)"
+                  class="ud-flex ud-h-10 ud-w-10 ud-items-center ud-justify-center ud-rounded-full ud-bg-light-bg ud-text-body-color-2 hover:ud-bg-primary hover:ud-text-white dark:ud-bg-dark dark:ud-text-white dark:hover:ud-bg-primary"
+                  name="social-link"
+                  aria-label="social-link"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 16 16"
+                    class="ud-fill-current"
+                  >
+                    <path
+                      d="M13.8333 0.5C14.2754 0.5 14.6993 0.675595 15.0118 0.988155C15.3244 1.30072 15.5 1.72464 15.5 2.16667V13.8333C15.5 14.2754 15.3244 14.6993 15.0118 15.0118C14.6993 15.3244 14.2754 15.5 13.8333 15.5H2.16667C1.72464 15.5 1.30072 15.3244 0.988155 15.0118C0.675595 14.6993 0.5 14.2754 0.5 13.8333V2.16667C0.5 1.72464 0.675595 1.30072 0.988155 0.988155C1.30072 0.675595 1.72464 0.5 2.16667 0.5H13.8333ZM13.4167 13.4167V9C13.4167 8.27949 13.1304 7.5885 12.621 7.07903C12.1115 6.56955 11.4205 6.28333 10.7 6.28333C9.99167 6.28333 9.16667 6.71667 8.76667 7.36667V6.44167H6.44167V13.4167H8.76667V9.30833C8.76667 8.66667 9.28333 8.14167 9.925 8.14167C10.2344 8.14167 10.5312 8.26458 10.75 8.48338C10.9688 8.70217 11.0917 8.99891 11.0917 9.30833V13.4167H13.4167ZM3.73333 5.13333C4.10464 5.13333 4.46073 4.98583 4.72328 4.72328C4.98583 4.46073 5.13333 4.10464 5.13333 3.73333C5.13333 2.95833 4.50833 2.325 3.73333 2.325C3.35982 2.325 3.0016 2.47338 2.73749 2.73749C2.47338 3.0016 2.325 3.35982 2.325 3.73333C2.325 4.50833 2.95833 5.13333 3.73333 5.13333ZM4.89167 13.4167V6.44167H2.58333V13.4167H4.89167Z"
+                    />
+                  </svg>
+                </a>
+                <a
+                  href="javascript:void(0)"
+                  class="ud-flex ud-h-10 ud-w-10 ud-items-center ud-justify-center ud-rounded-full ud-bg-light-bg ud-text-body-color-2 hover:ud-bg-primary hover:ud-text-white dark:ud-bg-dark dark:ud-text-white dark:hover:ud-bg-primary"
+                  name="social-link"
+                  aria-label="social-link"
+                >
+                  <svg
+                    width="18"
+                    height="12"
+                    viewBox="0 0 18 12"
+                    class="ud-fill-current"
+                  >
+                    <path
+                      d="M7.33366 8.49984L11.6587 5.99984L7.33366 3.49984V8.49984ZM16.967 1.97484C17.0753 2.3665 17.1503 2.8915 17.2003 3.55817C17.2587 4.22484 17.2837 4.79984 17.2837 5.29984L17.3337 5.99984C17.3337 7.82484 17.2003 9.1665 16.967 10.0248C16.7587 10.7748 16.2753 11.2582 15.5253 11.4665C15.1337 11.5748 14.417 11.6498 13.317 11.6998C12.2337 11.7582 11.242 11.7832 10.3253 11.7832L9.00033 11.8332C5.50866 11.8332 3.33366 11.6998 2.47533 11.4665C1.72533 11.2582 1.24199 10.7748 1.03366 10.0248C0.925326 9.63317 0.850326 9.10817 0.800326 8.44151C0.741992 7.77484 0.716992 7.19984 0.716992 6.69984L0.666992 5.99984C0.666992 4.17484 0.800326 2.83317 1.03366 1.97484C1.24199 1.22484 1.72533 0.741504 2.47533 0.533171C2.86699 0.424837 3.58366 0.349837 4.68366 0.299837C5.76699 0.241504 6.75866 0.216504 7.67533 0.216504L9.00033 0.166504C12.492 0.166504 14.667 0.299837 15.5253 0.533171C16.2753 0.741504 16.7587 1.22484 16.967 1.97484Z"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="ud-w-full ud-px-4 sm:ud-w-1/2 md:ud-w-1/2 lg:ud-w-4/12 xl:ud-w-2/12"
+          >
+            <div class="wow fadeInUp ud-mb-14 xl:ud-mb-20" data-wow-delay="0s">
+              <h2
+                class="ud-mb-5 ud-text-2xl ud-font-bold ud-text-black dark:ud-text-white"
+              >
+                Quick Links
+              </h2>
+              <div class="ud-space-y-3">
+                <a
+                  href="javascript:void(0)"
+                  class="ud-block ud-text-base ud-font-medium ud-text-body-color-2 hover:ud-text-primary dark:ud-text-body-color dark:hover:ud-text-primary"
+                >
+                  What is ico
+                </a>
+                <a
+                  href="javascript:void(0)"
+                  class="ud-block ud-text-base ud-font-medium ud-text-body-color-2 hover:ud-text-primary dark:ud-text-body-color dark:hover:ud-text-primary"
+                >
+                  Roadmap
+                </a>
+                <a
+                  href="javascript:void(0)"
+                  class="ud-block ud-text-base ud-font-medium ud-text-body-color-2 hover:ud-text-primary dark:ud-text-body-color dark:hover:ud-text-primary"
+                >
+                  Whitepaper
+                </a>
+                <a
+                  href="javascript:void(0)"
+                  class="ud-block ud-text-base ud-font-medium ud-text-body-color-2 hover:ud-text-primary dark:ud-text-body-color dark:hover:ud-text-primary"
+                >
+                  Social Network
+                </a>
+                <a
+                  href="javascript:void(0)"
+                  class="ud-block ud-text-base ud-font-medium ud-text-body-color-2 hover:ud-text-primary dark:ud-text-body-color dark:hover:ud-text-primary"
+                >
+                  Join Us Now
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="ud-w-full ud-px-4 sm:ud-w-1/2 md:ud-w-1/2 lg:ud-w-4/12 xl:ud-w-2/12"
+          >
+            <div class="wow fadeInUp ud-mb-14 xl:ud-mb-20" data-wow-delay="0s">
+              <h2
+                class="ud-mb-5 ud-text-2xl ud-font-bold ud-text-black dark:ud-text-white"
+              >
+                Supports
+              </h2>
+              <div class="ud-space-y-3">
+                <a
+                  href="javascript:void(0)"
+                  class="ud-block ud-text-base ud-font-medium ud-text-body-color-2 hover:ud-text-primary dark:ud-text-body-color dark:hover:ud-text-primary"
+                >
+                  Setting & Privacy
+                </a>
+                <a
+                  href="javascript:void(0)"
+                  class="ud-block ud-text-base ud-font-medium ud-text-body-color-2 hover:ud-text-primary dark:ud-text-body-color dark:hover:ud-text-primary"
+                >
+                  Help & Support
+                </a>
+                <a
+                  href="javascript:void(0)"
+                  class="ud-block ud-text-base ud-font-medium ud-text-body-color-2 hover:ud-text-primary dark:ud-text-body-color dark:hover:ud-text-primary"
+                >
+                  Terms & Conditions
+                </a>
+                <a
+                  href="javascript:void(0)"
+                  class="ud-block ud-text-base ud-font-medium ud-text-body-color-2 hover:ud-text-primary dark:ud-text-body-color dark:hover:ud-text-primary"
+                >
+                  24/7 Supports
+                </a>
+                <a
+                  href="javascript:void(0)"
+                  class="ud-block ud-text-base ud-font-medium ud-text-body-color-2 hover:ud-text-primary dark:ud-text-body-color dark:hover:ud-text-primary"
+                >
+                  On Point FAQ
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="ud-w-full ud-px-4 md:ud-w-1/2 lg:ud-w-1/2 xl:ud-w-4/12">
+            <div class="wow fadeInUp ud-mb-14 xl:ud-mb-20" data-wow-delay="0s">
+              <h2
+                class="ud-mb-5 ud-text-2xl ud-font-bold ud-text-black dark:ud-text-white"
+              >
+                News & Post
+              </h2>
+              <div class="ud-space-y-3">
+                <div class="ud-flex">
+                  <div
+                    class="ud-mr-5 ud-h-[75px] ud-w-full ud-max-w-[75px] ud-rounded-md"
+                  >
+                    <img
+                      src="images/footer/blog-01.jpg"
+                      alt="post"
+                      class="ud-h-full ud-w-full ud-rounded-md ud-object-cover ud-object-center"
+                    />
+                  </div>
+                  <div>
+                    <a
+                      href="javascript:void(0)"
+                      class="ud-text-base ud-font-medium ud-text-body-color-2 hover:ud-text-primary dark:ud-text-body-color dark:hover:ud-text-primary"
+                    >
+                      Roll Out New Features Without Hurting Loyal Users
+                    </a>
+                    <p class="ud-flex ud-items-center">
+                      <span
+                        class="ud-pr-1 ud-text-body-color-2 dark:ud-text-body-color"
+                      >
+                        <svg
+                          width="14"
+                          height="16"
+                          viewBox="0 0 14 16"
+                          class="ud-fill-current"
+                        >
+                          <path
+                            d="M3.25 8H4.75V9.5H3.25V8ZM13.75 3.5V14C13.75 14.3978 13.592 14.7794 13.3107 15.0607C13.0294 15.342 12.6478 15.5 12.25 15.5H1.75C0.9175 15.5 0.25 14.825 0.25 14V3.5C0.25 3.10218 0.408035 2.72064 0.68934 2.43934C0.970644 2.15804 1.35218 2 1.75 2H2.5V0.5H4V2H10V0.5H11.5V2H12.25C12.6478 2 13.0294 2.15804 13.3107 2.43934C13.592 2.72064 13.75 3.10218 13.75 3.5ZM1.75 5H12.25V3.5H1.75V5ZM12.25 14V6.5H1.75V14H12.25ZM9.25 9.5V8H10.75V9.5H9.25ZM6.25 9.5V8H7.75V9.5H6.25ZM3.25 11H4.75V12.5H3.25V11ZM9.25 12.5V11H10.75V12.5H9.25ZM6.25 12.5V11H7.75V12.5H6.25Z"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="ud-text-sm ud-font-medium ud-text-body-color-2 dark:ud-text-body-color"
+                      >
+                        Dec 18, 2025
+                      </span>
+                    </p>
+                  </div>
+                </div>
+                <div class="ud-flex">
+                  <div
+                    class="ud-mr-5 ud-h-[75px] ud-w-full ud-max-w-[75px] ud-rounded-md"
+                  >
+                    <img
+                      src="images/footer/blog-02.jpg"
+                      alt="post"
+                      class="ud-h-full ud-w-full ud-rounded-md ud-object-cover ud-object-center"
+                    />
+                  </div>
+                  <div>
+                    <a
+                      href="javascript:void(0)"
+                      class="ud-text-base ud-font-medium ud-text-body-color-2 hover:ud-text-primary dark:ud-text-body-color dark:hover:ud-text-primary"
+                    >
+                      Top 10 Best Cryptocurrency Blogs and Websites
+                    </a>
+                    <p class="ud-flex ud-items-center">
+                      <span
+                        class="ud-pr-1 ud-text-body-color-2 dark:ud-text-body-color"
+                      >
+                        <svg
+                          width="14"
+                          height="16"
+                          viewBox="0 0 14 16"
+                          class="ud-fill-current"
+                        >
+                          <path
+                            d="M3.25 8H4.75V9.5H3.25V8ZM13.75 3.5V14C13.75 14.3978 13.592 14.7794 13.3107 15.0607C13.0294 15.342 12.6478 15.5 12.25 15.5H1.75C0.9175 15.5 0.25 14.825 0.25 14V3.5C0.25 3.10218 0.408035 2.72064 0.68934 2.43934C0.970644 2.15804 1.35218 2 1.75 2H2.5V0.5H4V2H10V0.5H11.5V2H12.25C12.6478 2 13.0294 2.15804 13.3107 2.43934C13.592 2.72064 13.75 3.10218 13.75 3.5ZM1.75 5H12.25V3.5H1.75V5ZM12.25 14V6.5H1.75V14H12.25ZM9.25 9.5V8H10.75V9.5H9.25ZM6.25 9.5V8H7.75V9.5H6.25ZM3.25 11H4.75V12.5H3.25V11ZM9.25 12.5V11H10.75V12.5H9.25ZM6.25 12.5V11H7.75V12.5H6.25Z"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="ud-text-sm ud-font-medium ud-text-body-color-2 dark:ud-text-body-color"
+                      >
+                        Dec 18, 2025
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="wow fadeInUp ud-border-t ud-border-[#F3F4F4] ud-py-7 ud-text-center dark:ud-border-[#2D2C4A]"
+          data-wow-delay="0s"
+        >
+          <p
+            class="ud-text-base ud-font-medium ud-text-body-color-2 dark:ud-text-body-color"
+          >
+            © Crypto - all Rights Reserved, Crafted by
+            <a
+              href="https://uideck.com"
+              rel="noopenner nofollow"
+              target="_blank"
+              class="hover:ud-text-primary"
+            >
+              UIdeck
+            </a>
+          </p>
+        </div>
+      </div>
+
+      <div class="ud-absolute ud-top-0 ud-left-0 ud--z-10">
+        <img src="images/shapes/footer-shape-2.svg" alt="shape" />
+      </div>
+
+      <div class="ud-absolute ud-bottom-0 ud-right-0 ud--z-10">
+        <img src="images/shapes/footer-shape-1.svg" alt="shape" />
+      </div>
+    </footer>
+    <!-- ===== Footer end ===== -->
+
+    <!-- ====== Back To Top Start -->
+    <a
+      x-show="scrolledFromTop"
+      href="javascript:void(0)"
+      name="scrollToTop"
+      aria-label="scrollToTop"
+      class="hover:ud-shadow-signUp back-to-top ud-fixed ud-bottom-8 ud-right-8 ud-left-auto ud-z-[999] ud-flex ud-h-10 ud-w-10 ud-items-center ud-justify-center ud-rounded-lg ud-bg-primary ud-text-white ud-shadow-md ud-transition"
+    >
+      <span
+        class="ud-mt-[6px] ud-h-3 ud-w-3 ud-rotate-45 ud-border-t ud-border-l ud-border-white"
+      ></span>
+    </a>
+    <!-- ====== Back To Top End -->
+
+    <!-- ===== JS Files ====== -->
+    <script src="js/main.js"></script>
+  </body>
+</html>
