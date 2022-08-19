@@ -6,8 +6,8 @@ rpcURLs.mumbai = "polygon-mumbai.g.alchemy.com/v2/XpWGhuDF00NURzYtqXD_hycMj7d217
 //rpcURLs.polygon = "localhost:8545";  // CHANGE THIS!!!!!!
 var rpcURL = rpcURLs[chain];
 
-//var web3 = AlchemyWeb3.createAlchemyWeb3("wss://" + rpcURL);
-var web3 = AlchemyWeb3.createAlchemyWeb3("http://localhost:8545");
+var web3 = AlchemyWeb3.createAlchemyWeb3("wss://" + rpcURL);
+//var web3 = AlchemyWeb3.createAlchemyWeb3("http://localhost:8545");
 var BN = web3.utils.BN;
 
 var showWizard = false;
