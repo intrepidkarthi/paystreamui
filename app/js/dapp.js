@@ -370,85 +370,21 @@ async function renderTable(flows) {
                 }
             },
             {
-                title: "Flow Rate",
+                title: "Role",
                 data: null,
                 render: function(data, type, full, meta) {
-                    var flowRate = full.flowRate;
-                    flowRate = parseInt(flowRate) / (10 ** underlyingDecimals);
-                    flowRate = flowRate * 60 * 60 * 24;
-                    return flowRate.toFixed(2) + ` ${underlyingSymbol}x per day`;
+                    var flowRate = full.role;
+                    return ` ${flowRate}`;
                 }
             },
             {
-                title: "Start Date",
+                title: "Added Date",
                 data: null,
                 render: function(data, type, full, meta) {
                     var cliff = full.cliffEnd;
                     return moment.unix(cliff).format("YYYY-MM-DD");
                 }
             },
-            {
-                title: "Duration",
-                data: null,
-                render: function(data, type, full, meta) {
-                    var dur = full.vestingDuration;
-                    dur = parseInt(dur) / (60 * 60 * 24);
-                    return dur.toFixed(1) + " days";
-                }
-            },
-            {
-                title: "Permanent",
-                data: null,
-                render: function(data, type, full, meta) {
-                    var perm = full.permanent;
-                    if (perm) {
-                        return `<i data-feather="check-circle"></i>`;
-                    } else {
-                        return `<i data-feather="x-circle"></i>`;
-                    }
-                }
-            },
-            {
-                title: "Status",
-                data: null,
-                render: function(data, type, full, meta) {
-                    var state = full.state;
-                    if (state == 0) {
-                        return "Registered";
-                    } else if (state == 1) {
-                        return "Flowing";
-                    } else {
-                        return "Ended";
-                    }
-                }
-            },
-            {
-                title: "Actions",
-                data: null,
-                render: function(data, type, full, meta) {
-                    var actions = "";
-                    var state = full.state;
-                    if (state == 0) {
-                        if (parseInt(full.cliffEnd) < (Date.now() / 1000)) {
-                            actions += `<button data-address="${full.recipient}" data-flowIndex="${full.flowIndex}" class="btn btn-success btn-xs launchFlow" type="button" title="Ready to start flowing">Launch</button>`;
-                        }
-                    } else if (state == 1) {
-                        var start = parseInt(full.cliffEnd);
-                        if (parseInt(full.starttime) > 0) {
-                            start = parseInt(full.starttime);
-                        }
-                        var ended = (start + parseInt(full.vestingDuration)) < (Date.now() / 1000);
-                        if (ended) {
-                            actions += `<button data-address="${full.recipient}" data-flowIndex="${full.flowIndex}" class="btn btn-danger btn-xs stopFlow" type="button" title="ready to be closed">Close</button>`;
-                        } else {
-                            if (!full.permanent) {
-                                actions += `<button data-address="${full.recipient}" data-flowIndex="${full.flowIndex}" class="btn btn-danger btn-xs stopFlow" type="button" title="still flowing but you can stop it early">Stop Early</button>`;
-                            }
-                        }
-                    }
-                    return actions;
-                }
-            }
         ]
     });
     feather.replace();
