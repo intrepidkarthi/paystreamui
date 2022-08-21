@@ -817,10 +817,24 @@ $(document).ready(function() {
         return false;
     });
 
+    $(".addTeam").click(function() {
+        $(".section").hide();
+        $(".chart_data_right.second").attr("style", "display: none !important");
+        $("#teamCard").show();
+        return false;
+    });
+
     $(".team").click(function() {
         $(".section").hide();
         $(".chart_data_right.second").attr("style", "display: none !important");
         $("#teamCard").show();
+        return false;
+    });
+
+    $(".teamList").click(function() {
+        $(".section").hide();
+        $(".chart_data_right.second").attr("style", "display: none !important");
+        $("#teamList").show();
         return false;
     });
 
