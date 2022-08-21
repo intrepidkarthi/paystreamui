@@ -355,34 +355,31 @@ async function renderTable(flows) {
     feather.replace();
 }
 
-async function renderTable(flows) {
+async function renderTable() {
+    let team = [{id: 1, address: "0x405Aef8f3f48EBe915D00C3583Bc23537e5A6b94", role: 'Manager'}, {id: 2, address: "0x4D3e9A008CfA2eBa34d5D32F86141678427E7CF4", role: 'Employee'}]
     $('#all-team').DataTable({
         destroy: true,
-        data: flows,
+        data: team,
         columns: [{
                 title: "Address",
                 data: null,
-                render: function(data, type, full, meta) {
-                    var addr = full.recipient;
-                    var short = abbrAddress(addr);
-                    var img = "https://web3-images-api.kibalabs.com/v1/accounts/" + addr + "/image";
-                    return `<img src="${img}" style="width:21px;border-radius:4px;" /> <span title="${addr}">${short}</span>`;
+                render: function(data) {
+                    return `${data.address}`;
                 }
             },
             {
                 title: "Role",
                 data: null,
-                render: function(data, type, full, meta) {
-                    var flowRate = full.role;
-                    return ` ${flowRate}`;
+                render: function(data) {
+                    return `${data.role}`;
                 }
             },
             {
                 title: "Added Date",
                 data: null,
                 render: function(data, type, full, meta) {
-                    var cliff = full.cliffEnd;
-                    return moment.unix(cliff).format("YYYY-MM-DD");
+                    var date = new Date();
+                    return moment.unix(date).format("YYYY-MM-DD");
                 }
             },
         ]
