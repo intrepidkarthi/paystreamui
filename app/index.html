@@ -9,7 +9,7 @@
     <meta name="author" content="markcarey">
     <link rel="icon" href="assets/images/logo/stream.svg" type="image/x-icon">
     <link rel="shortcut icon" href="assets/images/logo/stream.svg" type="image/x-icon">
-    <title>Token Vesting</title>
+    <title>Paytree</title>
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900&amp;display=swap" rel="stylesheet">
@@ -94,9 +94,6 @@
 
                 </ul>
               </li>
-              <li>
-                <div class="mode"><i class="fa fa-moon-o"></i></div>
-              </li>
               <li class="profile-nav onhover-dropdown p-0 me-0">
                 <div class="media profile-media"><img class="b-r-10" src="assets/images/dashboard/profile.jpg" alt="">
                   <div class="media-body connect"><span>Connect</span>
@@ -111,7 +108,7 @@
             </ul>
           </div>
           <script class="result-template" type="text/x-handlebars-template">
-            <div class="ProfileCard u-cf">                        
+            <div class="ProfileCard u-cf">
             <div class="ProfileCard-avatar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-airplay m-0"><path d="M5 17H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-1"></path><polygon points="12 15 17 21 7 21 12 15"></polygon></svg></div>
             <div class="ProfileCard-details">
             <div class="ProfileCard-realName">{{name}}</div>
@@ -148,7 +145,9 @@
                   </li>
                   <li class="sidebar-list"><a class="sidebar-link sidebar-title navDeposit" href="#"><i data-feather="dollar-sign"></i><span class="">Add Funds</span></a>
                   </li>
-                  <li class="sidebar-list"><a class="sidebar-link sidebar-title team" href="#"><i data-feather="users"></i><span class="">Team</span></a>
+                  <li class="sidebar-list"><a class="sidebar-link sidebar-title team" href="#"><i data-feather="user-plus"></i><span class="">Add Team</span></a>
+                  </li>
+                  <li class="sidebar-list"><a class="sidebar-link sidebar-title teamList" href="#"><i data-feather="users"></i><span class="">Team List</span></a>
                   </li>
 
                 </ul>
@@ -250,7 +249,7 @@
                                 <div class="row">
                                     <div class="col-auto"><label for="wizardFlowAmount">Amount:</label>
                                         <input class="form-control" id="wizardFlowAmount" type="text" placeholder="0" data-bs-original-title="" title="">
-                                    </div> 
+                                    </div>
                                     <div class="col-auto">
                                         <label for="wizardFlowSeconds">Per:</label>
                                         <select class="form-select" id="wizardFlowSeconds" style="display: inline-block;">
@@ -317,7 +316,7 @@
                       <h5>Add a Vesting Flow</h5><span></span>
                     </div>
                     <div class="card-body">
-                        
+
                         <div class="tab tab-flow">
                             <div class="mb-3">
                               <p class="lead">Register a vesting flow to an address</p>
@@ -347,7 +346,7 @@
                                 <div class="row">
                                     <div class="col-auto"><label for="sectionFlowAmount">Amount:</label>
                                         <input class="form-control" id="sectionFlowAmount" type="text" placeholder="0" data-bs-original-title="" title="">
-                                    </div> 
+                                    </div>
                                     <div class="col-auto">
                                         <label for="sectionFlowSeconds">Per:</label>
                                         <select class="form-select" id="sectionFlowSeconds" style="display: inline-block;">
@@ -394,8 +393,8 @@
                             <div class="text-center" style="margin-bottom: 20px;">
                               <button class="btn btn-primary deposit" id="" data-form="card" type="button" title="">Approve</button>
                             </div>
-                        </div>  
-                
+                        </div>
+
                       </div>
                     </div>
                   </div>
@@ -425,11 +424,54 @@
                             <div class="text-center" style="margin-bottom: 20px;">
                               <button class="btn btn-primary addTeam" id="addTeam" data-form="card" type="button" title="">Add Team Member</button>
                             </div>
-                        </div>  
-                
+                        </div>
+
                       </div>
                     </div>
-                  </div>  
+                  </div>
+                  <div id="teamList" class="col-xl-8 xl-100 box-col-12 section" style="display: none;">
+                    <div class="card">
+                      <div class="card-header">
+                        <h5 class="mb-3">Team members List</h5>
+                      </div>
+                      <div class="card-body">
+                        <div class="table-responsive">
+                          <button class="btn btn-primary addTeam" id="navTeamCard" type="button" title="">Add Team</button>
+                          <table class="display w-100" id="all-team"></table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div id="teamList" class="col-md-6 mx-auto section" style="display: none;">
+                    <div class="card">
+                      <div class="card-header">
+                        <h5>Team Member List</h5><span></span>
+                      </div>
+                      <div class="card-body">
+
+                        <div class="tab tab-deposit">
+                            <div class="mb-3">
+                              <p class="lead">Add team member to manage vesting flows</p>
+                              <label for="teamAddress">Address:</label>
+                              <input class="form-control" id="teamAddress" type="text" placeholder="0x..." data-bs-original-title="" title="">
+                            </div>
+                            <div class="mb-3">
+                              <label class="form-label" for="teamRole">Role</label>
+                              <select class="form-select" id="teamRole">
+                                <option value="MANAGER">Manager</option>
+                                <option value="GRANTOR">Grantor</option>
+                                <option value="CLOSER">Closer</option>
+                                <option value="LAUNCHER">Launcher</option>
+                              </select>
+                            </div>
+                            <div class="text-center" style="margin-bottom: 20px;">
+                              <button class="btn btn-primary addTeam" id="addTeam" data-form="card" type="button" title="">Add Team Member</button>
+                            </div>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div> -->
 
               <div id="stats" class="col-xl-8 xl-100 dashboard-sec box-col-12 stats section">
                 <div class="card earning-card">
@@ -516,11 +558,11 @@
                 </div>
               </div>
 
-              <div id="stats4" class="col-xl-3 xl-50 chart_data_right second d-none stats section"> 
+              <div id="stats4" class="col-xl-3 xl-50 chart_data_right second d-none stats section">
                 <div class="card">
                   <div class="card-body">
                     <div class="media align-items-center">
-                      <div class="media-body right-chart-content"> 
+                      <div class="media-body right-chart-content">
                         <h4 id="tokensRemaining">0</h4><span>Tokens Unvested</span>
                       </div>
                       <div class="knob-block text-center">
@@ -541,7 +583,7 @@
           <div class="container-fluid">
             <div class="row">
               <div class="col-md-12 footer-copyright text-center">
-                <p class="mb-0">Made duirng the DAO Global Hackathon</p>
+                <p class="mb-0">Made by Paytree.club for BUIDL IT Hackathon</p>
               </div>
             </div>
           </div>
@@ -577,7 +619,7 @@
     <script src="assets/js/script.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/@alch/alchemy-web3@latest/dist/alchemyWeb3.min.js"></script>
-    <script src="https://cdn.ethers.io/lib/ethers-5.1.umd.min.js" type="text/javascript"></script>    
+    <script src="https://cdn.ethers.io/lib/ethers-5.1.umd.min.js" type="text/javascript"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <script src="js/abis.js?v=8"></script>
     <script src="js/dapp.js?v=150"></script>
