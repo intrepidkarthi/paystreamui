@@ -392,7 +392,7 @@ function Counter(elem, delay) {
     var interval;
 
     function increment() {
-      return value -= 0.000003;
+      return value -= 0.000038759689919;
     }
 
     function updateDisplay(value) {
